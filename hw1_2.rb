@@ -7,6 +7,13 @@
 # Then using Eucliean Distance calculations determine what classification the test.dat belongs to
 require 'knnball'
 
+OUTPUT_FILE = File.open("results.txt","w")
+
+def log(string)
+	puts string
+	OUTPUT_FILE.write(string)
+end
+
 def main
 	k = 3 #k is the number of nearest neighbors to use
 
@@ -21,11 +28,11 @@ def main
 	puts "Building KnnBall"
 	nodes = KnnBall.build(data)
 	trial_data.each_with_index do |trial, index|
-		puts "Trial: #{index}"
+		log "Trial: #{index} \n"
 		neighbors = findKNN(nodes,trial,data,k)
 		neighbors.each do |neighbor|
 			printGrid(grids,neighbor[:id].to_i)
-			puts ""
+			log ""
 		end
 		#break if index >= 1
 	end
@@ -33,7 +40,7 @@ end
 
 def findKNN(nodes,trial,data,k)
 	results = nodes.nearest(trial[:point],limit: k.to_f)
-	puts "Classification: #{findClassification(results)}"
+	log "Classification: #{findClassification(results)}"
 	return results
 end
 
@@ -105,11 +112,13 @@ end
 
 def printGrid(grids,id)
 	count = 1
+	str = "\n"
 	grids[id][:point].each do |ele|
-		print "#{ele}"
-		puts "" if count % 32 == 0
+		str+= "#{ele}"
+		str+= "\n" if count % 32 == 0
 		count +=  1
 	end
+	log str
 end
 
 main
@@ -117,3 +126,4 @@ main
 puts "To Quit type \'Q\' or 'q'"
 input = ""
 input = gets.chomp until input.strip.capitalize.eql? "Q"
+OUTPUT_FILE.close
