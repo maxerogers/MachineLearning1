@@ -1,0 +1,16 @@
+For Windows:
+	I have built a Ruby executable .exe file ‘hw1.exe’. You can use double click it like any other ‘.exe’ file. It should run properly
+
+For Mac:
+	Modern Mac should have Ruby 1.8.7 installed. You will go into your terminal navigate to the directory you have extracted the zip file and run the command “ ruby hw1.rb “
+
+If you don’t have Ruby installed or for some reason the windows exe won’t run, a simple solution is to download RailsInstaller as it is a bundled package for  Mac and Windows operating systems.
+Link: http://railsinstaller.org/en 
+
+If you are using Ubuntu here is a link to install Ruby without Ruby Version Manager
+http://leonard.io/blog/2012/05/installing-ruby-1-9-3-on-ubuntu-12-04-precise-pengolin/
+
+I choose to use Ruby because unlike technologies like Mat Lab, I know how to reuse it for other projects in Ruby and Java
+
+Terminal Command
+	"ruby hw1.rb"

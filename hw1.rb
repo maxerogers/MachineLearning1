@@ -105,3 +105,7 @@ def classify(neighbors)
 	return classification.index(classification.max) #return the index(key) that occurs the most
 end
 main
+
+puts "To Quit type \'Q\' or 'q'"
+input = ""
+input = gets.chomp until input.capitalize.eql? "Q"
