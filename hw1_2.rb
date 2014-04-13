@@ -18,9 +18,11 @@ def main
 	#printGrid(grids, 8)
 	test_data = loadData true
 	trial_data = loadTrialData
+	puts "Building KnnBall"
+	nodes = KnnBall.build(data)
 	trial_data.each_with_index do |trial, index|
 		puts "Trial: #{index}"
-		neighbors = findKNN(trial,data,k)
+		neighbors = findKNN(nodes,trial,data,k)
 		neighbors.each do |neighbor|
 			printGrid(grids,neighbor[:id].to_i)
 			puts ""
@@ -29,8 +31,7 @@ def main
 	end
 end
 
-def findKNN(trial,data,k)
-	nodes = KnnBall.build(data)
+def findKNN(nodes,trial,data,k)
 	results = nodes.nearest(trial[:point],limit: k.to_f)
 	puts "Classification: #{findClassification(results)}"
 	return results
